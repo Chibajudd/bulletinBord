@@ -1,14 +1,23 @@
 const express = require('express');
 const router = express.Router();
 
+const db = require('../models/index');
+
 //一覧表示
 router.get('/', (req, res) => {
-    res.render('messages.ejs', { title: "message", id: 1 });
+    db.message.findAll().then((results)=>{
+        res.render('messages.ejs', { messages: results});
+    });
 });
 
 //投稿
 router.post('/', (req, res) => {
-    res.redirect('/messages')
+    const params = {
+        content:req.body.messageContent
+    };
+    db.message.create(params).then((results)=>{
+        res.redirect('/messages');
+    });
 });
 
 //投稿画面表示
@@ -18,22 +27,43 @@ router.get('/new', (req, res) => {
 
 //削除
 router.delete('/:id', (req, res) => {
-    res.redirect('/messages');
+    const filter = {
+        where:{
+            id:req.params.id
+        }
+    };
+    db.message.destroy(filter).then((results)=>{
+        res.redirect('/messages');
+    });
 });
 
 //編集画面表示
 router.get('/:id/edit', (req, res) => {
-    res.render('edit_message.ejs', { id: req.params.id });
+    db.message.findByPk(req.params.id).then((results)=>{
+        res.render('edit_message.ejs', {message:results});
+    });
 });
 
 //更新
 router.put('/:id/edit', (req, res) => {
-    res.redirect('/messages');
+    const params = {
+        content:req.body.messageContent
+    };
+    const filter = {
+        where:{
+            id:req.params.id
+        }
+    };
+    db.message.update(params,filter).then((results)=>{
+        res.redirect('/messages');
+    });
 });
 
 //詳細表示
 router.get('/:id', (req, res) => {
-    res.render('message.ejs', { id: req.params.id });
+    db.message.findByPk(req.params.id).then((results)=>{
+        res.render('message.ejs', { message: results });
+    });
 });
 
 module.exports = router;

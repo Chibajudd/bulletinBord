@@ -7,9 +7,9 @@
 </head>
 <body>
     編集画面
-    <form action="/messages/<%= id %>/edit" method="POST">
+    <form action="/messages/<%= message.id %>/edit" method="POST">
         <input type="hidden" name="_method" value="put">
-        <input type="text">
+        <input type="text" value="<%= message.content %>" name="messageContent">
         <input type="submit" value="更新">
     </form>
 </body>

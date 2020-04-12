@@ -6,8 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <%= id %>の詳細
-    返信する
+    <p><%= message.content %></p>
+    <p>返信する</p>
     <form action="/replies" method="POST">
         <input type="text">
         <input type="submit" value="返信">

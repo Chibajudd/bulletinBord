@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>メッセージアプリ</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>メッセージアプリ</h1>
+
     <form action="/messages/new" method="GET">
-      <input type="submit" value="投稿">
+      <input type="submit" value="投稿する">
     </form>
 
-    <form action="/messages/<%= id %>" method="GET">
-      <input type="submit" value="詳細">
-    </form>
+    <ul>
+      <% messages.map((message)=>{ %>
+        <li><%= message.content %></li>
+        
+        <form action="/messages/<%= message.id %>" method="GET">
+          <input type="submit" value="詳細">
+        </form>
 
-    <form action="/messages/<%= id %>/edit" method="GET">
-      <input type="submit" value="編集">
-    </form>
-    
-    <form action="/messages/<%= id %>" method="POST">
-      <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="削除">
-    </form>
+        <form action="/messages/<%= message.id %>/edit" method="GET">
+          <input type="submit" value="編集">
+        </form>
+        
+        <form action="/messages/<%= message.id %>" method="POST">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="削除">
+        </form>
+      <%}) %>
+    </ul>
   </body>
 </html>
