@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <form action="/messages/new" method="GET">
+      <input type="submit" value="投稿">
+    </form>
+
+    <form action="/messages/<%= id %>" method="GET">
+      <input type="submit" value="詳細">
+    </form>
+
+    <form action="/messages/<%= id %>/edit" method="GET">
+      <input type="submit" value="編集">
+    </form>
+    
+    <form action="/messages/<%= id %>" method="POST">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="削除">
+    </form>
+  </body>
+</html>
