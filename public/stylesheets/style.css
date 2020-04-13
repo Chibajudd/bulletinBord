@@ -6,3 +6,17 @@ body {
 a {
   color: #00B7FF;
 }
+
+form{
+  display: inline-block;
+}
+
+.message{
+  font-size: 20px;
+  list-style:none;
+}
+
+.reply{
+  list-style-type: ">>";
+  line-height: 20px;
+}

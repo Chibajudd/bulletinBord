@@ -5,7 +5,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>メッセージアプリ</h1>
+    <h1>完全ワイヤレスイヤホンって落としそうじゃね？</h1>
 
     <form action="/messages/new" method="GET">
       <input type="submit" value="投稿する">
@@ -13,7 +13,7 @@
 
     <ul>
       <% messages.map((message)=>{ %>
-        <li><%= message.content %></li>
+        <li class="message"><%=message.id%>.<%= message.content %></li>
 
         <form action="/messages/<%= message.id %>" method="GET">
           <input type="submit" value="詳細">
@@ -29,9 +29,10 @@
         </form>
         <ul>
           <% message.replies.map((reply)=>{ %>
-          <li><%= reply.content %></li>
+          <li class="reply"><%= reply.message_id %>.<%= reply.content %></li>
           <% }) %>
         </ul>
+        <p></p>
       <%}) %>
     </ul>
   </body>

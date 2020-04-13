@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
     <h1>メッセージ</h1>
     <ul>
-        <li><%= message.content %></li>
+        <li class="message"><%=message.id%>.<%= message.content %></li>
         <ul>
             <% message.replies.map((reply)=>{ %>
-            <li><%= reply.content %></li>
+            <li class="reply"><%= reply.message_id %>.<%= reply.content %></li>
             <% }) %>
         </ul>
     </ul>
