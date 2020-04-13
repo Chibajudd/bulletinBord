@@ -10,8 +10,8 @@
     <ul>
         <li><%= message.content %></li>
         <ul>
-            <% replies.map((reply)=>{ %>
-            <li><%= reply %></li>
+            <% message.replies.map((reply)=>{ %>
+            <li><%= reply.content %></li>
             <% }) %>
         </ul>
     </ul>

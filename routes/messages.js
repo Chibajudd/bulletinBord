@@ -67,9 +67,17 @@ router.put('/:id/edit', (req, res) => {
 
 //詳細表示
 router.get('/:id', (req, res) => {
-    //req.params.idとmessage_idが一致するrepliesの要素を取得し、変数に格納する
-    db.message.findByPk(req.params.id).then((results)=>{
-        res.render('message.ejs',{message:results,replies:[1,1,1]});//[1,1,1]配列は取得したreplies配列の代わり
+    const filter = {
+        where:{
+            id:req.params.id
+        },
+        include:[{
+            model:db.reply
+        }]
+    };
+    db.message.findAll(filter).then((results)=>{
+        res.render('message.ejs',{message:results[0]});//findAllにしたため配列化している
+        console.log(results[0].content);
     });
 });
 
