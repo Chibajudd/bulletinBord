@@ -68,16 +68,13 @@ router.put('/:id/edit', (req, res) => {
 //詳細表示
 router.get('/:id', (req, res) => {
     const filter = {
-        where:{
-            id:req.params.id
-        },
         include:[{
             model:db.reply
         }]
     };
-    db.message.findAll(filter).then((results)=>{
-        res.render('message.ejs',{message:results[0]});//findAllにしたため配列化している
-        console.log(results[0].content);
+    db.message.findByPk(req.params.id,filter).then((results)=>{
+        res.render('message.ejs',{message:results});
+        console.log(results.content);
     });
 });
 
