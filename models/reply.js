@@ -1,12 +1,13 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const reply = sequelize.define('reply', {
-    content: DataTypes.STRING
+    content: DataTypes.STRING,
+    message_id:DataTypes.STRING//??
   }, {
     underscored: true,
   });
   reply.associate = function(models) {
-    // associations can be defined here
+    reply.belongsTo(models.message);//??
   };
   return reply;
 };

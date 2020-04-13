@@ -6,13 +6,22 @@
     <title>Document</title>
 </head>
 <body>
-    <p><%= message.content %></p>
-    <p>返信する</p>
+    <h1>メッセージ</h1>
+    <ul>
+        <li><%= message.content %></li>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </ul>
+    
+    <h1>返信する</h1>
     <form action="/replies" method="POST">
-        <input type="text">
+        <input type="text" name="replyContent">
         <input type="submit" value="返信">
     </form>
-    
+
     <form action="/messages" method="GET">
         <input type="submit" value="戻る">
     </form>
