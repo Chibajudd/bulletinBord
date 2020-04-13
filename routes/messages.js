@@ -62,7 +62,18 @@ router.put('/:id/edit', (req, res) => {
 //詳細表示
 router.get('/:id', (req, res) => {
     db.message.findByPk(req.params.id).then((results)=>{
-        res.render('message.ejs', { message: results });
+        res.render('message.ejs', { message: results});
+    });
+});
+
+router.get('/:id', (req, res) => {
+    const filter = {
+        where:{
+            message_id:req.params.id
+        }
+    };
+    db.reply.findAll(filter).then((results)=>{
+        res.render('message.ejs', {replies:results});
     });
 });
 

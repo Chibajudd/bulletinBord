@@ -10,14 +10,14 @@
     <ul>
         <li><%= message.content %></li>
         <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
+            <% replies.map((reply)=>{ %>
+            <li><%= reply %></li>
+            <% }) %>
         </ul>
     </ul>
-    
+
     <h1>返信する</h1>
-    <form action="/replies" method="POST">
+    <form action="/replies/<%= message.id %>" method="POST">
         <input type="text" name="replyContent">
         <input type="submit" value="返信">
     </form>
