@@ -5,7 +5,13 @@ const db = require('../models/index');
 
 //一覧表示
 router.get('/', (req, res) => {
-    db.message.findAll().then((results)=>{
+    const filter ={
+        include:[{
+            model:db.reply
+        }]
+    };
+    db.message.findAll(filter).then((results)=>{
+        console.log(results);
         res.render('messages.ejs', { messages: results});
     });
 });
@@ -61,19 +67,9 @@ router.put('/:id/edit', (req, res) => {
 
 //詳細表示
 router.get('/:id', (req, res) => {
+    //req.params.idとmessage_idが一致するrepliesの要素を取得し、変数に格納する
     db.message.findByPk(req.params.id).then((results)=>{
-        res.render('message.ejs', { message: results});
-    });
-});
-
-router.get('/:id', (req, res) => {
-    const filter = {
-        where:{
-            message_id:req.params.id
-        }
-    };
-    db.reply.findAll(filter).then((results)=>{
-        res.render('message.ejs', {replies:results});
+        res.render('message.ejs',{message:results,replies:[1,1,1]});//[1,1,1]配列は取得したreplies配列の代わり
     });
 });
 

@@ -14,7 +14,7 @@
     <ul>
       <% messages.map((message)=>{ %>
         <li><%= message.content %></li>
-        
+
         <form action="/messages/<%= message.id %>" method="GET">
           <input type="submit" value="詳細">
         </form>
@@ -27,6 +27,11 @@
           <input type="hidden" name="_method" value="delete">
           <input type="submit" value="削除">
         </form>
+        <ul>
+          <% message.replies.map((reply)=>{ %>
+          <li><%= reply.content %></li>
+          <% }) %>
+        </ul>
       <%}) %>
     </ul>
   </body>
