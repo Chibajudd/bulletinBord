@@ -9,6 +9,7 @@ console.log(db.reply);
 router.post('/:id', (req, res) => {
     const params = {
         message_id:req.params.id,
+        test_id:req.params.id,
         content:req.body.replyContent
     };
     db.reply.create(params).then((results)=>{
