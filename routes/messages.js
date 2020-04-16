@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     };
     db.message.findAll(filter).then((results)=>{
         console.log(results);
-        res.render('messages.ejs', { messages: results});
+        res.render('messages/index.ejs', { messages: results});
     });
 });
 
@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
 
 //投稿画面表示
 router.get('/new', (req, res) => {
-    res.render('new_message.ejs');
+    res.render('messages/new.ejs');
 });
 
 //削除
@@ -46,7 +46,7 @@ router.delete('/:id', (req, res) => {
 //編集画面表示
 router.get('/:id/edit', (req, res) => {
     db.message.findByPk(req.params.id).then((results)=>{
-        res.render('edit_message.ejs', {message:results});
+        res.render('messages/edit.ejs', {message:results});
     });
 });
 
@@ -73,7 +73,7 @@ router.get('/:id', (req, res) => {
         }]
     };
     db.message.findByPk(req.params.id,filter).then((results)=>{
-        res.render('message.ejs',{message:results});
+        res.render('messages/show.ejs',{message:results});
         console.log(results.content);
     });
 });
